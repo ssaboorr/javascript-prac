@@ -1,0 +1,16 @@
+Make a request to this url - https://swapi.dev/api/films/. From the returned
+response, console log the "title" and the "release_date" of each films. In
+the returned response there is also a "character" array.
+
+
+Make a request to the very first character and from the response console
+log "name", "height" and "birth_year" for each object. Lastly from this
+response, there will be a "starships" array. Make a new request to the first
+item in this array.
+
+
+Save the returned repsonse to a variable. Now loop over this response and
+then create dom objects, i.e heading, paragraphs etc. of these items for
+each object, "name", "model", "manufacturer", "length", "cost_in_credits",
+"cargo_capacity", "passengers" and "starship_class". Attach these to the
+dom on the page. Add some css styling to them so they look clean.
