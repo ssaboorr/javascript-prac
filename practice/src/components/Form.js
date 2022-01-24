@@ -1,77 +1,75 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
+
 const Form = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState("Enter Your Username here");
-  const [password, setPassword] = useState("");
 
-  const SubmitForm = (e) => {
-    e.preventDefault();
-    // console.log("Form Submitted");
-    // console.dir(e.target[0].value)
-    // console.dir(e.target[1].value)
-    // console.dir(e.target.elements)
+  const [username, setUsername] = useState('hello world');
+  const [password, setPassword] = useState('');
 
-    // const { username, password } = e.target.elements;
+  // const submitHandler = (event) => {
+  //   event.preventDefault();
+  //   // console.dir(event.target);
+  //   // console.dir(event.target[0].value);
+  //   // console.dir(event.target[1].value);
+  //   // const { username, password } = event.target.elements;
+  //   // console.log(username.value);
+  //   // console.log(password.value);
+  //   // console.log(usernameRef.current.value);
+  //   // console.log(passwordRef.current.value);
+  // };
 
-    // console.dir(username.value);
-    // console.dir(password.value);
-    console.log(usernameRef.current.value);
-    console.log(passwordRef.current.value);
+  // const changeHandler = (event) => {
+  //   const { value } = event.target;
+  //   const isLowerCase = value === value.toLowerCase();
+  //   setError(isLowerCase ? null : 'Username needs to be all lowercase');
+  // };
 
-    // const ChangeHandler = (e) => {
-    //     const {value} = e.target
-    //     const inLowerCase = value === value.toLowerCase()
-    //     setError(inLowerCase ? null:"Username should be in lower case")
+  // const changeHandler = (e) => {
+  //   const { value } = e.target;
+  //   setUsername(value.toLowerCase());
+  // };
 
-    // }
-
-    // const userChangeHandler = (e) => {
-    //     const {value} = e.target
-    //     setUsername(value.toLowerCase())
-
-    // }
-  };
-  const PasswordChangeHandler = (e) => {
+  const passwordChangeHandler = (e) => {
     const { value } = e.target;
     setPassword(value.toLowerCase());
-    if (password === "ctt") {
-      setError("Login Successfull");
+    if (password.length < 8) {
+      setError('Password should be min 8 chars');
     } else {
-      setError("Login Faild");
+      setError(null);
     }
   };
 
+  const submitHandler = () => {};
+
   return (
-    <form onSubmit={(e) => SubmitForm(e)}>
+    <form onSubmit={(event) => submitHandler(event)}>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor='username'>Username:</label>
         <input
-          onChange={(e) => e.target.value.toLowerCase()}
           ref={usernameRef}
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          name="username"
-          id="username"
+          name='username'
+          id='username'
+          type='text'
+          onChange={(e) => setUsername(e.target.value.toLowerCase())}
           value={username}
         />
       </div>
       <div>
-        <br />
-        <label htmlFor="password">Password:</label>
+        <label htmlFor='password'>Password:</label>
         <input
           ref={passwordRef}
-          type="password"
-          name="password"
-          id="password"
-          onChange={(e) => PasswordChangeHandler(e)}
+          name='password'
+          type='password'
+          onChange={(e) => passwordChangeHandler(e)}
           value={password}
         />
-        <small style={{ color: "red", fontWeight: "bold" }}>{error}</small>
+        <br />
+        <small style={{ color: 'red', fontWeight: 'bold' }}>{error}</small>
       </div>
-      <input disabled={Boolean(error)} type="submit" value="submit Form" />
+      <input disabled={Boolean(error)} type='submit' value='Submit Form' />
     </form>
   );
 };
